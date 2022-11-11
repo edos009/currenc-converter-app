@@ -1,0 +1,27 @@
+@import "../../styles/template";
+@import "../../styles/variables";
+
+.block{
+  .container{
+    @extend %container;
+
+    .wrapper{
+      max-width: 900px;
+      width: 100%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 40px;
+      border-radius: $border-radius;
+      margin: 50px auto;
+
+      background-color: $color-white;
+
+      @media (max-width: 568px) {
+        padding: 20px;
+      }
+    }
+  }
+}

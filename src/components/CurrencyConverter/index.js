@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrencies } from "../../reducers/thunks/currenciesThunk";
 import ConversionBlock from "../ConversionBlock";
 
+import styles from "./CurrencyConverter.module.scss";
+
 const CurrencyConverter = () => {
   const { currencies } = useSelector((state) => state.currencies);
 
@@ -22,7 +24,7 @@ const CurrencyConverter = () => {
   const onChangeFromPrice = (value) => {
     if (currencies.length !== 0) {
       const price = value / currencies[fromCurrency];
-      const result = (price * currencies[toCurrency]);
+      const result = price * currencies[toCurrency];
       setFromPrice(value);
       setToPrice(result);
     }
@@ -31,7 +33,7 @@ const CurrencyConverter = () => {
   const onChangeToPrice = (value) => {
     if (currencies.length !== 0) {
       const result =
-        ((currencies[fromCurrency] / currencies[toCurrency]) * value);
+        (currencies[fromCurrency] / currencies[toCurrency]) * value;
       setToPrice(value);
       setFromPrice(result);
     }
@@ -48,20 +50,24 @@ const CurrencyConverter = () => {
   }, [fromCurrency]);
 
   return (
-    <>
-      <ConversionBlock
-        value={fromPrice}
-        currency={fromCurrency}
-        onChangeCurrency={setFromCurrency}
-        onChangePrice={onChangeFromPrice}
-      />
-      <ConversionBlock
-        value={toPrice}
-        currency={toCurrency}
-        onChangeCurrency={setToCurrency}
-        onChangePrice={onChangeToPrice}
-      />
-    </>
+    <section className={styles.block}>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <ConversionBlock
+            value={fromPrice}
+            currency={fromCurrency}
+            onChangeCurrency={setFromCurrency}
+            onChangePrice={onChangeFromPrice}
+          />
+          <ConversionBlock
+            value={toPrice}
+            currency={toCurrency}
+            onChangeCurrency={setToCurrency}
+            onChangePrice={onChangeToPrice}
+          />
+        </div>
+      </div>
+    </section>
   );
 };
 

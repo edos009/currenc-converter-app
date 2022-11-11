@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./ConversionBlock.module.scss";
+
 const defaultCurrencies = ["USD", "EUR", "GBP", "PLN", "CZK", "UAH"];
 
 const ConversionBlock = ({
@@ -9,8 +11,9 @@ const ConversionBlock = ({
   onChangePrice,
 }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <select
+        className={styles.select}
         value={currency}
         onChange={({ target: { value } }) => onChangeCurrency(value)}
       >
@@ -19,6 +22,7 @@ const ConversionBlock = ({
         ))}
       </select>
       <input
+        className={styles.input}
         value={value}
         onChange={({ target: { value } }) => onChangePrice(Number(value))}
       />
